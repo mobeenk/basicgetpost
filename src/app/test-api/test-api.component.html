@@ -1,0 +1,97 @@
+
+
+
+<h1>{{title}}</h1>
+{{ person | json }}
+<div class="container">
+  <form #contactForm="ngForm" (ngSubmit)="onSubmit()">
+ 
+    <div class="form-group">
+      <label for="firstname">First Name</label>
+      <input type="text" class="form-control" name="firstname" 
+      [(ngModel)]="person.firstname"
+      >
+    </div>
+    <div class="form-group">
+      <label for="lastname">Last Name</label>
+      <input type="text"  class="form-control" name="lastname" 
+      [(ngModel)]="person.lastname">
+    </div>
+  <!--  
+    <select name="country" ngModel>
+      <option [ngValue]="c.id" *ngFor="let c of countryList">
+        {{c.name}}
+      </option>
+    </select>
+    -->
+    <div class="form-group">
+      <button class="btn btn-primary" type="submit">Post</button>
+    </div>
+    
+    <div class="form-group">
+      <button class="btn btn-warning" (click)="refreshPeople()">Get Data</button>
+    </div>
+    
+  </form>
+</div>
+
+ <div class="form-group">
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let person of people;">
+        <td>{{person.id}}</td>
+        <td>{{person.firstname}}</td>
+        <td>{{person.lastname}}</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+
+<!-- 
+  <div class="form-group">
+  <label for="power">Hero Power</label>
+  <select class="form-control"  id="power"
+          required
+          [(ngModel)]="model.power" name="power">
+    <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+  </select>
+</div>
+ -->
+
+<!--  
+<div>
+  <div>
+    <label>First Name: </label>
+    <input [(ngModel)]="person.firstname" />
+    <br> <br>
+    <label>Last Name: </label>
+    <input [(ngModel)]="person.lastname" />
+  </div>
+  <div>
+    <button (click)="addPerson()">Add</button>
+  </div>
+</div>
+ 
+<table class='table'>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let person of people;">
+      <td>{{person.id}}</td>
+      <td>{{person.firstname}}</td>
+      <td>{{person.lastname}}</td>
+    </tr>
+  </tbody>
+</table>
+ -->

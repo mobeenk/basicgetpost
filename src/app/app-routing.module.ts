@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { TestApiComponent } from './test-api/test-api.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: 'test', component: TestApiComponent},
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
