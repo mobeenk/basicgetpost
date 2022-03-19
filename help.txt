@@ -1,0 +1,7 @@
+1- insttall fake server by
+npm install -g json-server
+2- create db file as follows:
+db.json 
+with json data people
+3- run it:
+json-server --watch db.json

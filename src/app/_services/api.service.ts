@@ -10,7 +10,10 @@ export class ApiService {
   constructor(private http: HttpClient) { }
   getPeople():Observable<Person[]>{
     console.log('get people'+this.baseURL+'people');
+
+    
     return this.http.get<Person[]>(this.baseURL+'people');
+
   }
   addPerson(person: Person): Observable<any>{
     const headers = {'content-type': 'application/json'}

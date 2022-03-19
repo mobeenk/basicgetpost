@@ -1,7 +1,13 @@
+<!-- <app-cool-modal></app-cool-modal> -->
+  <app-alert-modal *ngIf="!flag" 
+    [message]="modalMessage"
+    (close)="onHandleClose($event)"
+  ></app-alert-modal>
+<p appBasicHighlight>Test BasicDirective</p>
+<p appBetterHighlight [highlightColor]="'cyan'" >Test BetterDirective</p>
+<h1 appBasicHighlight>{{title |shorten:6 }}</h1>
+<h2>{{title}}</h2>
 
-
-
-<h1>{{title}}</h1>
 {{ person | json }}
 <div class="container">
   <form #contactForm="ngForm" (ngSubmit)="onSubmit()">
@@ -25,33 +31,58 @@
     </select>
     -->
     <div class="form-group">
-      <button class="btn btn-primary" type="submit">Post</button>
+      <button [disabled]="!flag" class="btn btn-primary" type="submit">Post</button>
     </div>
     
-    <div class="form-group">
-      <button class="btn btn-warning" (click)="refreshPeople()">Get Data</button>
+    <div  class="form-group">
+      <button  class="btn btn-warning" (click)="refreshPeople()">Get Data</button>
     </div>
     
   </form>
 </div>
 
+
+<p>You searched for: <strong>{{searchTerm}}</strong> </p>
  <div class="form-group">
-  <table class='table'>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>FirstName</th>
-        <th>LastName</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let person of people;">
-        <td>{{person.id}}</td>
-        <td>{{person.firstname}}</td>
-        <td>{{person.lastname}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <input type="text" 
+   class="form-control col-sm-3" 
+  [(ngModel)]="searchTerm">
+
+  <div *ngIf="error != null" class="alert alert-danger col-md-12" role="alert">
+    No Response from API or bad request
+    <br>
+    <ul>
+      <li>  1- insttall fake server by
+        npm install -g json-server</li>
+      <li>  2- create db file as follows:
+        db.json
+        with json data people </li>
+      <li> 
+        3- run it:
+        json-server --watch db.json</li>
+    </ul>
+
+  </div>
+  
+  <div *ngIf="people">
+    <table class='table' >
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>FirstName</th>
+          <th>LastName</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let person of people | filter:searchTerm:'firstname'">
+          <td>{{person.id}}</td>
+          <td>{{person.firstname}}</td>
+          <td>{{person.lastname}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
  </div>
 
 <!-- 
