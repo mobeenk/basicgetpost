@@ -5,12 +5,12 @@
         <tr>
           <th>ID</th>
           <th>Title</th>
+          <th>Body</th>
         </tr>
       </thead>
       <tbody>
         <tr
-          *ngFor="
-            let post of POSTS
+          *ngFor=" let post of POSTS
               | paginate
                 : {
                     itemsPerPage: tableSize,
@@ -22,6 +22,7 @@
         >
           <th scope="row">{{ post.id }}</th>
           <td>{{ post.title }}</td>
+          <td>{{ post.body | shorten:99 }}</td>
         </tr>
       </tbody>
     </table>
